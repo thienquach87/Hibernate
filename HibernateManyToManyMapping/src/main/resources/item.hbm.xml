@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.journaldev.hibernate.model">
+    <class name="Item" table="ITEM">
+        <id name="id" type="long">
+            <column name="item_id" />
+            <generator class="identity" />
+        </id>
+        <property name="price" type="double" column="item_price" />
+        <property name="description" type="string" column="item_des" />
+        <set name="carts" table="item" fetch="select" cascade="all">
+            <key column="item_id" />
+            <many-to-many class="Cart" column="cart_id" />
+        </set>
+    </class>
+
+</hibernate-mapping>
